@@ -4,11 +4,16 @@ const app = express();
 // Middleware function
 app.use((req, res, next) => {
     console.log('This middleware runs for every request');
-    next(); // Call the next middleware in the stack
+    if(req.path=='/premium'){
+
+      next(); // Call the next middleware in the stack
+    }else{
+      res.send(`not a premium user`)
+    }
   });
   
   // Route handler
-  app.get('/', (req, res) => {
+  app.get('/premium', (req, res) => {
     res.send('Hello, Worldss!');
   });
   
